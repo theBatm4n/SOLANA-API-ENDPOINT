@@ -1,13 +1,13 @@
 async function createAgentExample() {
   try {
     
-      const response = await fetch('http://localhost:3001/api/v1/agents/deploy', {
+      const response = await fetch('https://solana-agent-api.fly.dev/api/v1/agents/deploy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        agentId: "test-agent-105",
+        agentId: "test-agent-110",
         name: "fly agent", 
         symbol: "FLY",
         uri: "https://gist.github.com/theBatm4n/b712e212060f556eae6bdd591fd9d005.js"
@@ -16,13 +16,13 @@ async function createAgentExample() {
     const result = await response.json();
     console.log(result)
     
-    const mint_result = await fetch('http://localhost:3001/api/v1/agents/mint', {
+    const mint_result = await fetch('https://solana-agent-api.fly.dev/api/v1/agents/mint', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            agentId: "test-agent-105",  
+            agentId: "test-agent-110",  
             amount: 70, 
             recipient: "D3hMdwkmMHcucbHdwFtjjS8uPviqvao9dSc5pxR9mpY9" // any wallet address is fine
         })
