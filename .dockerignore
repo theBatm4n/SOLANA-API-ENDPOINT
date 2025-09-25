@@ -1,0 +1,5 @@
+.cnv
+node_modules
+.git
+.DS_store
+*.log
