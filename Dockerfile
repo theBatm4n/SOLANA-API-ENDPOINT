@@ -8,8 +8,8 @@ COPY tsconfig.json ./
 
 RUN npm install
 
-# Copy source code
-COPY src/ ./src/
+# Copy 
+COPY . .
 
 # Debug: Show what files were copied
 RUN ls -la && ls -la src/
