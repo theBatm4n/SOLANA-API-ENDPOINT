@@ -1,18 +1,24 @@
 FROM node:18-alpine
 
-# Update package database and upgrade vulnerable packages
-RUN apk update && apk upgrade
 WORKDIR /app
 
 # Copy package files first for better caching
 COPY package*.json ./
+COPY tsconfig.json ./
+
 RUN npm install
 
-# Copy application code
-COPY . .
+# Copy source code
+COPY src/ ./src/
 
-# Expose your API port
+# Debug: Show what files were copied
+RUN ls -la && ls -la src/
+
+# Build the project with error output
+RUN npm run build || (echo "Build failed!" && exit 1)
+
+# Verify the build
+RUN ls -la dist/ || (echo "No dist directory!" && exit 1)
+
 EXPOSE 8080
-
-# Start your API
-CMD ["npm", "start"]
+CMD ["node", "dist/server.js"]
